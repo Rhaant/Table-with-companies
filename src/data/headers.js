@@ -1,0 +1,1 @@
+export const headers = ['id', 'name', 'city', 'Total Income', 'Averge Income', 'Last Month Incomes' ]
