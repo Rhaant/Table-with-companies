@@ -1,15 +1,38 @@
-import React from 'react';
-import TableRow from '../tableRow/tableRow.component'
+import React from "react";
+import TableRow from "../tableRow/tableRow.component";
 
-const TableBody = ({companies, currentPage}) => {
+const TableBody = ({
+  companies,
+  currentPage,
+  sorthMethod,
+  sortDirection,
+  searchString,
+}) => {
+  let sortDirectionValues = [];
 
-    const companiesToRender = companies.slice(0,9)
+  sortDirection === "increment"
+    ? (sortDirectionValues = [1, -1])
+    : (sortDirectionValues = [-1, 1]);
 
-    return(
-        <tbody>
-                {companiesToRender.map( company => <TableRow key={company.id} company={company}/> )}
-        </tbody>
+  const companiesAfterFilter = companies.filter((company) =>
+    new RegExp(searchString, "i").test(company.name)
+  );
+
+  const companiesToRender = companiesAfterFilter
+    .sort((firstCompany, secondCompany) =>
+      firstCompany[sorthMethod] > secondCompany[sorthMethod]
+        ? sortDirectionValues[0]
+        : sortDirectionValues[1]
     )
-}
+    .slice(0, 9);
 
-export default TableBody
+  return (
+    <tbody>
+      {companiesToRender.map((company) => (
+        <TableRow key={company.id} company={company} />
+      ))}
+    </tbody>
+  );
+};
+
+export default TableBody;
