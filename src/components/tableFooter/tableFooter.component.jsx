@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types'
 
 const TableFooter = ({
   currentPage,
@@ -35,5 +36,11 @@ const TableFooter = ({
     </tfoot>
   );
 };
+TableFooter.propTypes = {
+  currentPage: PropTypes.number,
+  handleSelectPage: PropTypes.func,
+  handleSearchString: PropTypes.func,
+  numberOfPages: PropTypes.number,
+}
 
 export default TableFooter;
