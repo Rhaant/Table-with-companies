@@ -5,6 +5,7 @@ import "./table.styles.scss";
 import Loading from "../loading/loading.component";
 import TableHead from "../tableHeader/tableHead.component";
 import TableBody from "../tableBody/tableBody.component";
+import TableFooter from "../tableFooter/tableFooter.component";
 
 import {
   fetchCompanies,
@@ -23,7 +24,7 @@ class Table extends React.Component {
     this.state = {
       companies: [],
       currentPage: 1,
-      pagesNumber: 1,
+      numberOfPages: 1,
       isLoading: true,
       headers: headers,
       sortMethod: "id",
@@ -56,15 +57,28 @@ class Table extends React.Component {
     ).then(() => this.setState({ companies: companies, isLoading: false }));
   }
 
-  handleSortChange = e => {
+  handleSortChange = (e) => {
     const { sortMethod, sortDirection } = this.state;
-    console.log(e.target.value)
+    this.setState({ currentPage: 1 });
 
     if (e.target.value === sortMethod) {
       if (sortDirection === "increment")
         this.setState({ sortDirection: "decrement" });
       else this.setState({ sortDirection: "increment" });
     } else this.setState({ sortMethod: e.target.value });
+  };
+
+  handleSearchStringChange = (event) => {
+    this.setState({ searchString: event.target.value });
+  };
+
+  handleSelectPage = (event) => {
+    this.setState({ currentPage: event.target.value });
+  };
+  handleNumberOfPagesChange = (newNumberOfPages) => {
+    if (newNumberOfPages !== this.state.numberOfPages) {
+      this.setState({ numberOfPages: newNumberOfPages });
+    }
   };
 
   renderTable() {
@@ -75,18 +89,24 @@ class Table extends React.Component {
       sortMethod,
       currentPage,
       searchString,
+      numberOfPages,
     } = this.state;
     return (
       <table className="companies-table">
         <TableHead headers={headers} handleSortChange={this.handleSortChange} />
         <TableBody
+          handleNumberOfPagesChange={this.handleNumberOfPagesChange}
           companies={companies}
           currentPage={currentPage}
           sortDirection={sortDirection}
           sortMethod={sortMethod}
           searchString={searchString}
         />
-        <tfoot> Table Footer</tfoot>
+        <TableFooter
+          handleSearchString={this.handleSearchStringChange}
+          numberOfPages={numberOfPages}
+          handleSelectPage={this.handleSelectPage}
+        />
       </table>
     );
   }

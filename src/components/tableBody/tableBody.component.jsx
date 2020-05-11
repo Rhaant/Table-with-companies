@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TableRow from "../tableRow/tableRow.component";
 
 import {
@@ -13,7 +13,12 @@ const TableBody = ({
   sortMethod,
   sortDirection,
   searchString,
+  handleNumberOfPagesChange,
 }) => {
+  useEffect(()=> {
+    handleNumberOfPagesChange(newNumberOfPages)
+  })
+
   let sortDirectionValues = [];
 
   sortDirection === "increment"
@@ -25,7 +30,8 @@ const TableBody = ({
   const indexOdSecondItemToDipslay = calculateSecondIndexToDisplay(
     indexOfFirstItemToDisplay
   );
-
+  const newNumberOfPages = Math.ceil(companiesAfterFilter.length/10);  
+  
   const companiesToRender = companiesAfterFilter
     .sort((firstCompany, secondCompany) =>
       firstCompany[sortMethod] > secondCompany[sortMethod]
@@ -33,6 +39,7 @@ const TableBody = ({
         : sortDirectionValues[1]
     )
     .slice(indexOfFirstItemToDisplay, indexOdSecondItemToDipslay);
+
 
   return (
     <tbody>

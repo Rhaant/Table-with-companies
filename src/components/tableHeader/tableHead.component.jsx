@@ -9,7 +9,6 @@ const TableHead = ({ headers, handleSortChange }) => (
           <button value={head.value} onClick={handleSortChange}>
             {head.position}
           </button>
-          {console.log(head)}
         </th>
       ))}
     </tr>
