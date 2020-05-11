@@ -1,5 +1,6 @@
 import React from "react";
 import "./tableHead.styles.scss";
+import PropTypes from 'prop-types'
 
 const TableHead = ({ headers, handleSortChange }) => (
   <thead>
@@ -14,4 +15,10 @@ const TableHead = ({ headers, handleSortChange }) => (
     </tr>
   </thead>
 );
+
+TableHead.propTypes = {
+  headers: PropTypes.array,
+  handleSortChange: PropTypes.func,
+}
+
 export default TableHead;

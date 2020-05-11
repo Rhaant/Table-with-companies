@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.scss";
 
 import Home from "./components/views/home.component";
 
