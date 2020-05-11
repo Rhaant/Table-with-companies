@@ -26,9 +26,9 @@ class Table extends React.Component {
       pagesNumber: 1,
       isLoading: true,
       headers: headers,
-      sorthMethod: "id",
+      sortMethod: "id",
       sortDirection: "increment",
-      searchString: ''
+      searchString: "",
     };
   }
   componentDidMount() {
@@ -56,23 +56,34 @@ class Table extends React.Component {
     ).then(() => this.setState({ companies: companies, isLoading: false }));
   }
 
+  handleSortChange = e => {
+    const { sortMethod, sortDirection } = this.state;
+    console.log(e.target.value)
+
+    if (e.target.value === sortMethod) {
+      if (sortDirection === "increment")
+        this.setState({ sortDirection: "decrement" });
+      else this.setState({ sortDirection: "increment" });
+    } else this.setState({ sortMethod: e.target.value });
+  };
+
   renderTable() {
     const {
       headers,
       companies,
       sortDirection,
-      sorthMethod,
+      sortMethod,
       currentPage,
-      searchString
+      searchString,
     } = this.state;
     return (
       <table className="companies-table">
-        <TableHead headers={headers} />
+        <TableHead headers={headers} handleSortChange={this.handleSortChange} />
         <TableBody
           companies={companies}
           currentPage={currentPage}
           sortDirection={sortDirection}
-          sorthMethod={sorthMethod}
+          sortMethod={sortMethod}
           searchString={searchString}
         />
         <tfoot> Table Footer</tfoot>

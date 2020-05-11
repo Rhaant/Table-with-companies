@@ -1,10 +1,16 @@
 import React from "react";
 import TableRow from "../tableRow/tableRow.component";
 
+import {
+  filterResult,
+  calculateFirstIndexToDisplay,
+  calculateSecondIndexToDisplay,
+} from "../../data/functions";
+
 const TableBody = ({
   companies,
   currentPage,
-  sorthMethod,
+  sortMethod,
   sortDirection,
   searchString,
 }) => {
@@ -14,17 +20,19 @@ const TableBody = ({
     ? (sortDirectionValues = [1, -1])
     : (sortDirectionValues = [-1, 1]);
 
-  const companiesAfterFilter = companies.filter((company) =>
-    new RegExp(searchString, "i").test(company.name)
+  const companiesAfterFilter = filterResult(companies, searchString);
+  const indexOfFirstItemToDisplay = calculateFirstIndexToDisplay(currentPage);
+  const indexOdSecondItemToDipslay = calculateSecondIndexToDisplay(
+    indexOfFirstItemToDisplay
   );
 
   const companiesToRender = companiesAfterFilter
     .sort((firstCompany, secondCompany) =>
-      firstCompany[sorthMethod] > secondCompany[sorthMethod]
+      firstCompany[sortMethod] > secondCompany[sortMethod]
         ? sortDirectionValues[0]
         : sortDirectionValues[1]
     )
-    .slice(0, 9);
+    .slice(indexOfFirstItemToDisplay, indexOdSecondItemToDipslay);
 
   return (
     <tbody>

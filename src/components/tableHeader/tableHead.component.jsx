@@ -1,10 +1,18 @@
-import React from 'react'
+import React from "react";
+import './tableHead.styles.scss'
 
-const TableHead = ({headers}) => (
-    <thead>
-        <tr>
-            {headers.map(head => <th key={head}>{head}</th>)}
-        </tr>
-    </thead>
-)
-export default TableHead
+const TableHead = ({ headers, handleSortChange }) => (
+  <thead>
+    <tr>
+      {headers.map((head) => (
+        <th key={head.id}>
+          <button value={head.value} onClick={handleSortChange}>
+            {head.position}
+          </button>
+          {console.log(head)}
+        </th>
+      ))}
+    </tr>
+  </thead>
+);
+export default TableHead;
