@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import TableRow from "../tableRow/tableRow.component";
 
-import './tableBody.styles.scss'
+import "./tableBody.styles.scss";
 
 import {
   filterResult,
@@ -17,9 +17,9 @@ const TableBody = ({
   searchString,
   handleNumberOfPagesChange,
 }) => {
-  useEffect(()=> {
-    handleNumberOfPagesChange(newNumberOfPages)
-  })
+  useEffect(() => {
+    handleNumberOfPagesChange(newNumberOfPages);
+  });
 
   let sortDirectionValues = [];
 
@@ -32,8 +32,8 @@ const TableBody = ({
   const indexOdSecondItemToDipslay = calculateSecondIndexToDisplay(
     indexOfFirstItemToDisplay
   );
-  const newNumberOfPages = Math.ceil(companiesAfterFilter.length/10);  
-  
+  const newNumberOfPages = Math.ceil(companiesAfterFilter.length / 10);
+
   const companiesToRender = companiesAfterFilter
     .sort((firstCompany, secondCompany) =>
       firstCompany[sortMethod] > secondCompany[sortMethod]
@@ -42,9 +42,8 @@ const TableBody = ({
     )
     .slice(indexOfFirstItemToDisplay, indexOdSecondItemToDipslay);
 
-
   return (
-    <tbody className='table-body'>
+    <tbody className="table-body">
       {companiesToRender.map((company) => (
         <TableRow key={company.id} company={company} />
       ))}

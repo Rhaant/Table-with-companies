@@ -1,5 +1,5 @@
 import React from "react";
-import './tableHead.styles.scss'
+import "./tableHead.styles.scss";
 
 const TableHead = ({ headers, handleSortChange }) => (
   <thead>

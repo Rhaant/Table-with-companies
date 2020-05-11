@@ -68,7 +68,7 @@ class Table extends React.Component {
   };
 
   handleSearchStringChange = (event) => {
-    this.setState({ searchString: event.target.value});
+    this.setState({ searchString: event.target.value });
   };
 
   handleSelectPage = (event) => {

@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const TableFooter = ({
   currentPage,
   handleSelectPage,
@@ -20,11 +19,15 @@ const TableFooter = ({
     <tfoot>
       <tr>
         <td colSpan="3">
-          <input type="text" onChange={handleSearchString}  placeholder="Search Company" />
+          <input
+            type="text"
+            onChange={handleSearchString}
+            placeholder="Search Company"
+          />
         </td>
         <td colSpan="3">
-            <label>Select Page  </label>
-          <select onClick={handleSelectPage} defaultValue={currentPage} >
+          <label>Select Page </label>
+          <select onClick={handleSelectPage} defaultValue={currentPage}>
             {renderSelectOptions(numberOfPages)}
           </select>
         </td>
