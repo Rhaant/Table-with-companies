@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import TableRow from "../tableRow/tableRow.component";
 
+import './tableBody.styles.scss'
+
 import {
   filterResult,
   calculateFirstIndexToDisplay,
@@ -42,7 +44,7 @@ const TableBody = ({
 
 
   return (
-    <tbody>
+    <tbody className='table-body'>
       {companiesToRender.map((company) => (
         <TableRow key={company.id} company={company} />
       ))}

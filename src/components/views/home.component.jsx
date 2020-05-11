@@ -2,11 +2,12 @@ import React from 'react';
 
 import './home.styles.scss'
 
+import Header from '../header/header.component'
 import Table from '../table/table.component'
 
 const Home = () => (
     <div className="home">
-        <div className="header"> Companies Summary </div>
+        <Header/>
         <Table/>
     </div>
 )

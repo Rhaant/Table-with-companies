@@ -1,0 +1,10 @@
+.table-body{
+
+    tr:nth-child(2n){
+        background-color: grey;
+    }
+
+    td{
+        height: 3rem;
+    }
+}

@@ -1,25 +1,36 @@
-import React from 'react' 
-
-const TableFooter = ({currentPage, handleSelectPage, handleSearchString, numberOfPages}) => {
-
-    const renderSelectOptions = (pages) => {
-        const selectOptions = [...Array(pages).keys()].map((value) => (value += 1));
-        return selectOptions.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ));
-      };
+import React from "react";
 
 
-    return(
+const TableFooter = ({
+  currentPage,
+  handleSelectPage,
+  handleSearchString,
+  numberOfPages,
+}) => {
+  const renderSelectOptions = (pages) => {
+    const selectOptions = [...Array(pages).keys()].map((value) => (value += 1));
+    return selectOptions.map((option) => (
+      <option key={option} value={option}>
+        {option}
+      </option>
+    ));
+  };
+
+  return (
     <tfoot>
-        <tr>
-            <td><input type="text" onChange={handleSearchString} /></td>
-            <td><select onClick={handleSelectPage}>{renderSelectOptions(numberOfPages)}</select></td>
-        </tr>
+      <tr>
+        <td colSpan="3">
+          <input type="text" onChange={handleSearchString}  placeholder="Search Company" />
+        </td>
+        <td colSpan="3">
+            <label>Select Page  </label>
+          <select onClick={handleSelectPage} defaultValue={currentPage} >
+            {renderSelectOptions(numberOfPages)}
+          </select>
+        </td>
+      </tr>
     </tfoot>
-    )
-}
+  );
+};
 
-export default TableFooter
+export default TableFooter;
