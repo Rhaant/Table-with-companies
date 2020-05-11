@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types'
 
 const TableRow = ({ company }) => (
   <tr>
@@ -10,5 +11,9 @@ const TableRow = ({ company }) => (
     <td>{company.incomesLastMonth.toFixed(2)}</td>
   </tr>
 );
+
+TableRow.propTypes = {
+  company: PropTypes.object
+}
 
 export default TableRow;
