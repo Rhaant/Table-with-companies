@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import TableRow from "../tableRow/tableRow.component";
+import PropTypes from 'prop-types'
 
 import "./tableBody.styles.scss";
 
@@ -50,5 +51,14 @@ const TableBody = ({
     </tbody>
   );
 };
+
+TableBody.propTypes = {
+  companies: PropTypes.array,
+  currentPage: PropTypes.number,
+  sortMethod: PropTypes.string,
+  sortDirection: PropTypes.string,
+  searchString: PropTypes.string,
+  handleNumberOfPagesChange: PropTypes.func,
+}
 
 export default TableBody;
