@@ -42,13 +42,11 @@ class Table extends React.Component {
     Promise.all(
       companies.map(async (company) => {
         const companyIncomes = await getCompanyIncomes(company);
-        const monthOfLastIncome = await findMonthOfLastIncome(companyIncomes);
+        const monthOfLastIncome = findMonthOfLastIncome(companyIncomes);
 
-        company.incomeTotal = await calculateCompanyIncomes(companyIncomes);
-        company.incomeAverge = await calculateAvergeCompanyIncome(
-          companyIncomes
-        );
-        company.incomesLastMonth = await calculateLastMonthIncome(
+        company.incomeTotal = calculateCompanyIncomes(companyIncomes);
+        company.incomeAverge = calculateAvergeCompanyIncome(companyIncomes);
+        company.incomesLastMonth = calculateLastMonthIncome(
           companyIncomes,
           monthOfLastIncome
         );
@@ -72,7 +70,7 @@ class Table extends React.Component {
   };
 
   handleSelectPage = (event) => {
-    this.setState({ currentPage: event.target.value });
+    this.setState({ currentPage: parseInt(event.target.value) });
   };
   handleNumberOfPagesChange = (newNumberOfPages) => {
     if (newNumberOfPages !== this.state.numberOfPages) {
