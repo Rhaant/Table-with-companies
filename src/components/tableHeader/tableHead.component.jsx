@@ -17,7 +17,7 @@ const TableHead = ({ headers, handleSortChange }) => (
 );
 
 TableHead.propTypes = {
-  headers: PropTypes.array,
+  headers: PropTypes.array.isRequired,
   handleSortChange: PropTypes.func,
 }
 
