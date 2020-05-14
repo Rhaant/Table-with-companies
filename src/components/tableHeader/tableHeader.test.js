@@ -24,7 +24,7 @@ describe("TableHead component", () => {
     const component = shallow(<TableHead headers={headersTest} />);
     expect(component).toMatchSnapshot();
   });
-  it('function shoud be called', ()=> {
+  it("function shoud be called", () => {
     const headersTest = [
       {
         id: "test Id 1",
@@ -42,12 +42,14 @@ describe("TableHead component", () => {
         position: "test Position 3",
       },
     ];
-    const handleSortChange = jest.fn()
-    const component = shallow(<TableHead headers={headersTest} handleSortChange={handleSortChange} />);
-    component.find('button').first().simulate('click')
-    expect(handleSortChange).toHaveBeenCalled()
-  })
-  it('button shoud shoud have expected value', ()=> {
+    const handleSortChange = jest.fn();
+    const component = shallow(
+      <TableHead headers={headersTest} handleSortChange={handleSortChange} />
+    );
+    component.find("button").first().simulate("click");
+    expect(handleSortChange).toHaveBeenCalled();
+  });
+  it("button shoud shoud have expected value", () => {
     const headersTest = [
       {
         id: "test Id 1",
@@ -65,10 +67,13 @@ describe("TableHead component", () => {
         position: "test Position 3",
       },
     ];
-    const handleSortChange = jest.fn()
-    const component = shallow(<TableHead headers={headersTest} handleSortChange={handleSortChange} />);
-    component.find('button').first().simulate('click')
-    expect(component.find('button').first().prop('value')).toEqual("test Name 1")
-
+    const handleSortChange = jest.fn();
+    const component = shallow(
+      <TableHead headers={headersTest} handleSortChange={handleSortChange} />
+    );
+    component.find("button").first().simulate("click");
+    expect(component.find("button").first().prop("value")).toEqual(
+      "test Name 1"
+    );
+  });
 });
-})
